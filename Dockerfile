@@ -8,6 +8,19 @@ RUN wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2021.3.1.16/
     tar -xvzf android-studio-2021.3.1.16-linux.tar.gz && \
     mv android-studio /usr/local/
 
+ # Install necessary packages
+RUN apt-get update && apt-get install -y \
+xfce4 \
+xfce4-goodies \
+tightvncserver \
+xvfb \
+x11vnc \
+&& apt-get clean
+
+# Optionally expose port for VNC
+EXPOSE 5901
+
+
 # Set environment variables
 ENV ANDROID_HOME /usr/local/android-studio
 
